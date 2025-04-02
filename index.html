@@ -9,9 +9,7 @@
 <body>
     <div class="item-container">
         <iframe id="video" class="item-left" src="" width="100%" height="100%" frameborder="0" allowfullscreen="1" allow="autoplay; encrypted-media; fullscreen; picture-in-picture"></iframe>
-
         <div class="item-right" id="chat-container"></div>
-
     </div>
 
     <script type="text/javascript">
@@ -22,7 +20,6 @@
         chatIframe.src = `https://www.twitch.tv/embed/${chatParam}/chat?parent=leti460.github.io`;
         chatIframe.height = "100%";
         chatIframe.width = "100%";
-
         document.getElementById("chat-container").appendChild(chatIframe);
     </script>
 

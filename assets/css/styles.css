@@ -1,17 +1,15 @@
-
 html, body {
     height: 100%;
-    padding: 0; 
+    margin: 0;
+    padding: 0;
 }
-
 
 .item-container {
     display: flex;
     height: 100vh;
     background-color: #000000;
-    overflow: hidden; 
+    overflow: hidden;
 }
-
 
 .item-left {
     flex-grow: 1;
@@ -25,8 +23,8 @@ html, body {
     border: none;
     display: flex;
     justify-content: center;
-    align-items: center;   
-} 
+    align-items: center;
+}
 
 #chat {
     width: 100%;
