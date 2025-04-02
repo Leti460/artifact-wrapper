@@ -1,33 +1,34 @@
-/* Ensure that html and body fill the full height of the screen */
+
 html, body {
-    height: 100%; /* Set both html and body to 100% height */
-    margin: 0;    /* Remove any default margin */
-    padding: 0;   /* Remove any default padding */
+    height: 100%;
+    padding: 0; 
 }
 
-/* Ensure the twitch embed container takes up full height and width */
-#twitch-embed {
-    height: 100%; /* Full viewport height */
-    width: 100%;  /* Full viewport width */
-}
 
 .item-container {
     display: flex;
     height: 100vh;
     background-color: #000000;
+    overflow: hidden; 
 }
 
 
 .item-left {
-    flex: 1; 
-    height: 100%; 
+    flex-grow: 1;
+    height: 100%;
     border: none;
 }
 
-
 .item-right {
-    width: 300px; 
-    height: 100%; 
+    width: 340px;
+    height: 100%;
     border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+} 
 
+#chat {
+    width: 100%;
+    height: 100%;
 }
