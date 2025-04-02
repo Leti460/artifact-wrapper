@@ -11,21 +11,21 @@ html, body {
     width: 100%;  /* Full viewport width */
 }
 
-.iframe-container {
+.item-container {
     display: flex;
     height: 100vh;
     background-color: #000000;
 }
 
 
-.iframe-left {
+.item-left {
     flex: 1; 
     height: 100%; 
     border: none;
 }
 
 
-.iframe-right {
+.item-right {
     width: 300px; 
     height: 100%; 
     border: none;
