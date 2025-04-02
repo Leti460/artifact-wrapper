@@ -6,23 +6,22 @@
     <title>Kino</title>
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
+
 <body>
-    <div class="item-container">
-        <iframe id="video" class="item-left" src="" width="100%" height="100%" frameborder="0" allowfullscreen="1" allow="autoplay; encrypted-media; fullscreen; picture-in-picture"></iframe>
-        <div class="item-right" id="chat-container"></div>
-    </div>
+    <div id="twitch-embed"></div>
+
+    <script src="https://embed.twitch.tv/embed/v1.js"></script>
 
     <script type="text/javascript">
         const urlParams = new URLSearchParams(window.location.search);
         const chatParam = urlParams.get('chat');
-        const chatIframe = document.createElement("iframe");
-        chatIframe.id = "chat";
-        chatIframe.src = `https://www.twitch.tv/embed/${chatParam}/chat?parent=leti460.github.io`;
-        chatIframe.height = "100%";
-        chatIframe.width = "100%";
-        document.getElementById("chat-container").appendChild(chatIframe);
+      new Twitch.Embed("twitch-embed", {
+        width: "100%",
+        height: "100%",
+        channel: chatParam
+      });
     </script>
 
     <script src="assets/js/script.js" type="text/javascript"></script>
-</body>
+  </body>
 </html>

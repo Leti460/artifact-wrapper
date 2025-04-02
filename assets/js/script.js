@@ -6,7 +6,11 @@ function getQueryParam(param) {
 const videoParam = getQueryParam('video');
 
 if (videoParam) {
-    const videoiframe = document.getElementById('video');
-    videoiframe.src = videoParam;
-    //videoiframe.outerHTML = `<iframe src="${videoParam}" width="100%" height="100%" frameborder="0" allowfullscreen="1" allow="autoplay; encrypted-media; fullscreen; picture-in-picture"></iframe>`;
+    const videoIframe = document.createElement("iframe");
+    videoIframe.src = videoParam;
+    videoIframe.width = "100%";
+    videoIframe.height = "100%";
+    videoIframe.allowFullscreen = true;
+    videoIframe.allow = "autoplay; encrypted-media; fullscreen; picture-in-picture";
+    document.getElementById("twitch-embed").prepend(videoIframe);
 }
