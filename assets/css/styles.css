@@ -1,0 +1,33 @@
+/* Ensure that html and body fill the full height of the screen */
+html, body {
+    height: 100%; /* Set both html and body to 100% height */
+    margin: 0;    /* Remove any default margin */
+    padding: 0;   /* Remove any default padding */
+}
+
+/* Ensure the twitch embed container takes up full height and width */
+#twitch-embed {
+    height: 100%; /* Full viewport height */
+    width: 100%;  /* Full viewport width */
+}
+
+.iframe-container {
+    display: flex;
+    height: 100vh;
+    background-color: #000000;
+}
+
+
+.iframe-left {
+    flex: 1; 
+    height: 100%; 
+    border: none;
+}
+
+
+.iframe-right {
+    width: 300px; 
+    height: 100%; 
+    border: none;
+
+}
