@@ -1,24 +1,3 @@
-document.addEventListener("DOMContentLoaded", function () {
-    if (window.embed) {
-        console.log("Twitch Embed instance is accessible!");
-
-        // Example: Change the channel dynamically
-
-
-        // Example: Listen for Twitch Embed events
-        window.embed.addEventListener(Twitch.Embed.VIDEO_READY, function() {
-           console.log('Video is ready inside script.js!');
-           console.log(window.embed.getPlaybackStats().displayResolution);
-            // Set up resize listener after the embed is ready
-            window.addEventListener('resize', debounce(updateIframeSize, 200));
-            // Initial size update once the video is ready
-            updateIframeSize();
-        });
-    } else {
-        console.error("Twitch Embed instance not found!");
-    }
-});
-
 function getQueryParam(param) {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(param);
@@ -36,37 +15,55 @@ if (videoParam) {
     videoIframe.allowFullscreen = true;
     videoIframe.allow = "autoplay; encrypted-media; fullscreen; picture-in-picture";
     document.getElementById("twitch-embed").prepend(videoIframe);
-    videoIframe.style.position = "absolute"; // Absolute positioning to pin it to the top-left
-    videoIframe.style.top = "0"; // Pin it to the top of the page
-    videoIframe.style.left = "0"; // Pin it to the left of the page
-    videoIframe.style.zIndex = "1000"; // High z-index to appear above other elements
+    videoIframe.style.position = "absolute"; 
+    videoIframe.style.top = "0"; 
+    videoIframe.style.left = "0"; 
+    videoIframe.style.zIndex = "1000";
+    videoIframe.style.border = "none";
+    videoIframe.style.padding = "0";
+    videoIframe.style.margin = "0";
+    videoIframe.style.display = "block";
 }
 
-function updateIframeSize() {
-    console.log("update");
+document.addEventListener("DOMContentLoaded", function () {
     if (window.embed) {
-        let playbackStats = window.embed.getPlaybackStats();
-        if (playbackStats && playbackStats.displayResolution) {
-            setTimeout(function() {
-                playbackStats = window.embed.getPlaybackStats();
-                const resolution = playbackStats.displayResolution;
-                const [width, height] = resolution.split("x");
-                console.log(resolution);
-                console.log(width);
-                console.log(height);
+        console.log("Twitch Embed instance is accessible!");
 
-            if (videoIframe) {
-                videoIframe.width = `${width}px`;
-                videoIframe.height = `${height}px`;
-            }
-        }, 300);
+        window.embed.addEventListener(Twitch.Player.READY, function() {
+           console.log('Video is ready inside script.js!');
+           setTimeout(updateIframeSize, 1000);
+           setTimeout(updateIframeSize, 5000);
+           window.addEventListener('resize', debounce(updateIframeSize, 1000));
+        });
+    } else {
+        console.error("Twitch Embed instance not found!");
+    }
+});
+
+
+function updateIframeSize() {
+    if (videoIframe && window.embed) {
+        const playbackStats = window.embed.getPlaybackStats();
+
+        if (playbackStats && playbackStats.displayResolution) {
+            const resolution = playbackStats.displayResolution;
+            const [width, height] = resolution.split("x");
+
+            console.log("Updated Resolution:", resolution);
+            console.log("Width:", width);
+            console.log("Height:", height);
+
+            videoIframe.width = `${width}px`;
+            videoIframe.height = `${height}px`;
+        } else {
+            console.warn("Playback stats or display resolution not available yet.");
         }
+    } else {
+        console.error("Video iframe or Twitch embed instance not found.");
     }
 }
 
-updateIframeSize();
-
-// Debounce function
+// Debounce function to limit how often the updateIframeSize is called
 function debounce(func, wait) {
     let timeout;
     return function() {
